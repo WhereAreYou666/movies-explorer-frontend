@@ -9,7 +9,14 @@
   padding: 0;
   overflow: hidden;
   background-color: rgba(34, 34, 34, 1);
+}
 
+.movies__card_type_inactive {
+  display: none;
+}
+
+.movies__card_type_active {
+  display: flex;
 }
 
 .movies__card-content {
@@ -22,12 +29,15 @@
 }
 
 .movies__card-title {
-  margin: 0;
+  margin: 0 10px 0 0;
   padding: 18px 0;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   color: rgba(255, 255, 255, 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movies__card-duration {
@@ -37,11 +47,28 @@
   font-size: 13px;
   line-height: 18px;
   color: rgba(139, 139, 139, 1);
+  white-space: nowrap;
+}
+
+.movies__card-link {
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  transition: opacity .5s linear;
+}
+
+.movies__card-link:hover {
+  opacity: .7;
 }
 
 .movies__card-image {
   margin: 0;
   padding: 0;
+  object-fit: cover;
+  width: 100%;
+  max-width: 360px;
+  min-height: 200px;
+  max-height: 200px;
 }
 
 .movies__card-button-save {
@@ -88,7 +115,9 @@
   }
 
   .movies__card-image {
+    max-width: 342px;
     max-height: 190px;
+    min-height: 190px;
   }
 }
 
@@ -99,7 +128,7 @@
   }
 
   .movies__card:last-of-type {
-    margin-bottom: 140px;
+    margin-bottom: 72px;
   }
 
   .movies__card-title {
@@ -115,6 +144,7 @@
   .movies__card-image {
     max-width: 300px;
     min-height: 168px;
+    max-height: 168px;
   }
 
   .movies__card-button-save {
