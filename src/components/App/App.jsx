@@ -12,6 +12,7 @@ import { api } from "../../utils/MoviesApi";
 import { mainApi } from "../../utils/MainApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { SHORT_DURATION } from "../../utils/constants.js";
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -71,7 +72,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  function handleClickShortCutCheckbox() {
+  function handleClickShortCutCheckbox() { //!
     if (isCheckedCheckbox) {
       setIsCheckedCheckbox(false);
     } else {
@@ -87,7 +88,7 @@ function App() {
     }
   }
 
-  React.useEffect(() => {
+  React.useEffect(() => { //!
     localStorage.setItem('checkbox', JSON.stringify(isCheckedCheckbox))
     localStorage.setItem('save-checkbox', JSON.stringify(isSaveCheckedCheckbox))
   }, [isCheckedCheckbox, isSaveCheckedCheckbox])
@@ -109,7 +110,7 @@ function App() {
       api.getInitialCards()
         .then((cards) => {
           setCards(cards);
-          localStorage.setItem('cards', JSON.stringify(cards));
+          localStorage.setItem('cards', JSON.stringify(cards)); //!
         })
         .catch(err => {
           console.log(err);
@@ -131,11 +132,11 @@ function App() {
       setValue(JSON.parse(localStorage.getItem('input')));
       if (isCheckedCheckbox) {
         setFilteredCards(cards.filter((card) => {
-          return (card.duration <= 40) && (card.nameRU.toLowerCase().includes(valueFilter.toLowerCase())
+          return (card.duration <= SHORT_DURATION) && (card.nameRU.toLowerCase().includes(valueFilter.toLowerCase()) //!
             || card.nameEN.toLowerCase().includes(valueFilter.toLowerCase()))
         }))
       } else {
-        setFilteredCards(cards.filter((card) => {
+        setFilteredCards(cards.filter((card) => { //!
           return (
             card.nameRU.toLowerCase().includes(valueFilter.toLowerCase())
             || card.nameEN.toLowerCase().includes(valueFilter.toLowerCase())

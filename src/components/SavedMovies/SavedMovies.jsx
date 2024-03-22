@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { SHORT_DURATION } from "../../utils/constants.js";
 
 function SavedMovies(props) {
   const [filteredCards, setFilteredCards] = React.useState(props.savedCards);
@@ -32,7 +33,7 @@ function SavedMovies(props) {
   React.useEffect(() => {
     if (props.isCheckbox) {
       setFilteredCards(props.savedCards.filter((card) => {
-        return (card.duration <= 40) && (card.nameRU.toLowerCase().includes(valueFilter.toLowerCase())
+        return (card.duration <= SHORT_DURATION) && (card.nameRU.toLowerCase().includes(valueFilter.toLowerCase())
           || card.nameEN.toLowerCase().includes(valueFilter.toLowerCase()))
       }))
     } else {
